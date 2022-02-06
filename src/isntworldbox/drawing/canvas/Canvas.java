@@ -36,6 +36,12 @@ public class Canvas extends JComponent {
         TERRAINS = new HashMap<String,Terrain>();
         TERRAINS.put("WATER", new Terrain(0,new Color(0,0,255)));
         TERRAINS.put("GRASS", new Terrain(1,new Color(0,255,0)));
+        TERRAINS.put("LAVA", new Terrain(2,new Color(245,52,44)));
+        TERRAINS.put("MOUNTAIN", new Terrain(3,new Color(200,185,185)));
+        TERRAINS.put("SAND", new Terrain(4,new Color(231,214,133)));
+        TERRAINS.put("JUNGLEGRASS", new Terrain(5,new Color(19,92,40)));
+        TERRAINS.put("SNOW", new Terrain(6,new Color(214,214,214)));
+        TERRAINS.put("NOTHING", new Terrain(7, new Color(255,255,255)));
     }
     
     private void init(){        
