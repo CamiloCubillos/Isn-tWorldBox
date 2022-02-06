@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.*;  
 import java.awt.event.*;  
+import java.util.Set;
 
 
 public class IsnTWorldBox{    
@@ -21,38 +22,39 @@ public class IsnTWorldBox{
         dapi.createCanvas(width, height);
         dapi.setBrush(new Brush(10,dapi.getCanvas().TERRAINS.get("WATER")));
         
-        jFrame.setSize(width, height + 26);
-        String[] terrains = {"WATER", "GRASS", "LAVA", "MOUNTAIN", "SAND", "JUNGLEGRASS", "SNOW", "NOTHING"};
-        JComboBox comboBox = new JComboBox(terrains);
-        comboBox.setBounds(10, 10, 100, 40);
-        jFrame.add(comboBox);
-        Integer[] sizes = {10,20,50,80};
-        JComboBox sizeBox = new JComboBox(sizes);
-        sizeBox.setBounds(10, 60, 100, 40);
-        jFrame.add(sizeBox);
-
-        //Click listener
-        comboBox.addActionListener(new ActionListener(){
+        // Create brush's terrain ComboBox
+        
+        Set<String> terrains = dapi.getCanvas().TERRAINS.keySet();
+        JComboBox terrainsBox = new JComboBox(terrains.toArray());
+        terrainsBox.setBounds(10, 10, 100, 40);
+        terrainsBox.addActionListener(new ActionListener(){
             int size;
             @Override
-            
             public void actionPerformed(ActionEvent e) {
-                size = Integer.parseInt(sizeBox.getSelectedItem().toString());
-                if (e.getSource() == comboBox) {
-                    dapi.setBrush(new Brush(size ,dapi.getCanvas().TERRAINS.get(comboBox.getSelectedItem())));
+                if (e.getSource() == terrainsBox) {
+                    dapi.setBrushTerrain(dapi.getCanvas().TERRAINS.get(terrainsBox.getSelectedItem()));
                 }
             }
         });
+        jFrame.add(terrainsBox);
+        
+        // Create brush's size ComboBox
+        
+        Integer[] sizes = {10,20,50,80};
+        JComboBox sizeBox = new JComboBox(sizes);
+        sizeBox.setBounds(10, 60, 100, 40);
         sizeBox.addActionListener(new ActionListener(){
            int size;
            @Override           
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() == sizeBox) {
-                        size = Integer.parseInt(sizeBox.getSelectedItem().toString());
-                        dapi.setBrush(new Brush(size ,dapi.getCanvas().TERRAINS.get(comboBox.getSelectedItem())));
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == sizeBox) {
+                    size = Integer.parseInt(sizeBox.getSelectedItem().toString());
+                    dapi.setBrushSize(size);
                 }}            
         });
+        jFrame.add(sizeBox);
         
+        jFrame.setSize(width, height + 26);
         jFrame.setTitle("Isn'tWorldBox");
         jFrame.add(dapi.getCanvas());
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
