@@ -4,15 +4,15 @@ import isntworldbox.drawing.DrawingAPI;
 import isntworldbox.drawing.canvas.Brush;
 import isntworldbox.drawing.canvas.Canvas;
 import isntworldbox.drawing.canvas.Terrain;
-import javax.swing.*;
+import javax.swing.JFrame;
 import java.awt.Color;
-import java.awt.*;  
-import java.awt.event.*;  
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
+import javax.swing.JComboBox;
+//TEST 
+public class IsnTWorldBox {
 
-
-public class IsnTWorldBox{    
-    
     public static void main(String[] args) {
         int width = 1280;
         int height = 720;
@@ -20,7 +20,7 @@ public class IsnTWorldBox{
         JFrame jFrame = new JFrame();
         DrawingAPI dapi = new DrawingAPI();
         dapi.createCanvas(width, height);
-        dapi.setBrush(new Brush(10,dapi.getCanvas().TERRAINS.get("WATER")));
+        dapi.setBrush(new Brush(10,dapi.getCanvas().TERRAINS.get("GRASS"))); 
         
         // Create brush's terrain ComboBox
         
@@ -63,6 +63,6 @@ public class IsnTWorldBox{
         jFrame.setVisible(true);   
 
     }
-
+    
 
 }

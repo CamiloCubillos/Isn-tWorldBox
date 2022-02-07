@@ -37,7 +37,7 @@ public class DrawController extends MouseAdapter{
             // DEFAULT BRUSH PROPERTIES
             canvas.painter.setColor(Color.BLACK);
             canvas.painter.setStroke(new BasicStroke(10));
-        } 
+        }   
         canvas.painter.drawLine(currPoint.x,currPoint.y, e.getX(), e.getY());
         canvas.repaint();
         LMP.add((Point) currPoint.getLocation().clone());
