@@ -30,14 +30,6 @@ public class DrawController extends MouseAdapter{
     @Override
     public void mousePressed(MouseEvent e){
         currPoint.setLocation(e.getPoint());
-        canvas.painter.drawLine(currPoint.x,currPoint.y, e.getX(), e.getY());
-        canvas.repaint();
-        LMP.add((Point) currPoint.getLocation().clone());
-        System.out.println("presionado");
-    }
-            
-    @Override
-    public void mouseDragged(MouseEvent e){
         if(canvas.brush != null){
             canvas.painter.setColor(canvas.brush.terrain.color);
             canvas.painter.setStroke(new BasicStroke(canvas.brush.size));
@@ -45,7 +37,15 @@ public class DrawController extends MouseAdapter{
             // DEFAULT BRUSH PROPERTIES
             canvas.painter.setColor(Color.BLACK);
             canvas.painter.setStroke(new BasicStroke(10));
-        }                
+        } 
+        canvas.painter.drawLine(currPoint.x,currPoint.y, e.getX(), e.getY());
+        canvas.repaint();
+        LMP.add((Point) currPoint.getLocation().clone());
+        System.out.println("presionado");
+    }
+            
+    @Override
+    public void mouseDragged(MouseEvent e){              
         canvas.painter.drawLine(currPoint.x,currPoint.y, e.getX(), e.getY());
         currPoint.setLocation(e.getPoint());
         LMP.add((Point) currPoint.getLocation().clone());
